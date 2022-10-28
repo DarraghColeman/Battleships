@@ -12,8 +12,8 @@ letters_to_numbers = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H
 
 
 def print_board(board):
-    print('   A B C D E F G H')
-    print('   ---------------')
+    print('  A B C D E F G H')
+    print('  ----------------')
     row_number = 1
     for row in board:
         print("%d|%s|" % (row_number, "|".join(row)))
@@ -50,11 +50,10 @@ def count_hit_ships(board):
 
 
 create_ships(hidden_board)
-print_board(hidden_board)
 turns = 10
 while turns > 0:
     print('Welcome to Battleships')
-    print(guess_board)
+    print_board(guess_board)
     row, column = get_ship_location()
     if guess_board[row][column] == '-':
         print('You already guessed that')
