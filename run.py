@@ -12,8 +12,11 @@ letters_to_numbers = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H
 
 
 def print_board(board):
+    """
+    Game board layout
+    """
     print('  A B C D E F G H')
-    print('  ----------------')
+    print(' -----------------')
     row_number = 1
     for row in board:
         print("%d|%s|" % (row_number, "|".join(row)))
@@ -21,6 +24,9 @@ def print_board(board):
 
 
 def create_ships(board):
+    """
+    Adds computer's random ship locations.
+    """
     for ship in range(5):
         ship_row, ship_column = randint(0,7), randint(0,7)
         while board[ship_row][ship_column] == 'X':
@@ -29,6 +35,9 @@ def create_ships(board):
 
 
 def get_ship_location():
+    """
+    Adds user input and error messages when user inputs incorrect data.
+    """
     row = input('Please enter a ship row 1-8: ')
     while row not in '12345678':
         print('Please enter a valid row')
@@ -41,6 +50,9 @@ def get_ship_location():
 
 
 def count_hit_ships(board):
+    """
+    Counts successful hits and adds an extra turn
+    """
     count = 0
     for row in board:
         for column in row:
