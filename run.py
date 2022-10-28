@@ -36,9 +36,36 @@ def get_ship_location():
         column = input('Please enter a ship column A-H').upper()
     return int(row) - 1, letters_to_numbers[column]
 
-def count_hit_ships():
-    pass
+def count_hit_ships(board):
+    count = 0
+    for row in board:
+        for column in row:
+            if column == 'X':
+                count += 1
+    return count
 
-create_ships()
+create_ships(hidden_board)
 turns = 10
+while turns > 0:
+    print('Welcome to Battleships')
+    print(guess_board)
+    row, column = get_ship_location()
+    if guess_board[row][column] == '-':
+        print('You already guessed that')
+    elif hidden_board[row][column] == 'X':
+        print('Congratulations, you have hit the battleship!')
+        guess_board[row][column] = 'X'
+        turns -= 1
+    else:
+        print('Sorry, you missed')
+        guess_board[row][column] = '-'
+        turns -= 1
+    if count_hit_ships(guess_board) == 5:
+        print('Congratulations, you have sunk all the battleships!')
+        break
+    print('You have ' + str(turns) + ' turns remaining')
+    if turns == 0:
+        print('Sorry, you ran out of turns, game over!')
+        break
+
 #while turns > 0:
